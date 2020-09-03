@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+        <title></title>
+    </head>
+    <body>
+            <input type="button" value="前の問題" id="btnBack" />
+            <b id=TT></b>
+            <input type="button" value="次の問題" id="btnNext" /><br>
+            <br>
+            <div>Ⅰ.以下のプログラムを<a href="https://bitarrow.eplang.jp/bitarrow/index.html" target=”_blank” >Bit Arrow</a>にコピー＆ペーストする</div>
+            <div>Ⅱ.プログラムを完成させる</div>
+            <div>Ⅲ.プログラムを実行して、意図通りの結果を得ているか確認する</div>
+            <div>※意図した結果でない場合は、ⅡとⅢを繰り返す</div>
+            <div>※[次の問題]を押して、プログラムが表示されなくなったら、データがないってことです。よく頑張りました。</div>
+            
+            <hr>
+            <div id="QQ"></div>
+            <div id="PP"></div>
+
+        <script> // ここからがJavascript
+            window.onload = function() {
+                var btnNext = document.getElementById("btnNext");
+                var btnBack = document.getElementById("btnBack");
+                var count_value = 1;
+
+                if( count_value == 1 ){ myReload( count_value ); }
+                
+                btnNext.onclick = function (){
+                var myFileName = "./data/" + ('000' + count_value ).slice( -3 ) + ".jpg"
+                
+                //alert( myFileName.size );
+                  count_value += 1;
+                  myReload( count_value );
+                };
+                
+                btnBack.onclick = function (){
+                    count_value -= 1;
+                    if( count_value <= 0 ){ count_value = 1; }
+                    myReload( count_value );
+                };
+            }
+            function myReload( num ){
+                document.getElementById('TT').innerHTML = num + "問目";
+                document.getElementById('QQ').innerHTML = "<img src=\"./data/" + ( '000' + num ).slice( -3 ) + ".jpg\" alt=\"問題文、プログラムが表示されなくなったら終了\">";
+                document.getElementById('PP').innerHTML = "<OBJECT DATA=\"./data/" + ( '000' + num ).slice( -3 ) + ".c\" TYPE=\"text/plain\" width=\"100%\" height=\"1200\"><\/OBJECT>"; 
+            }
+        </script>
+    </body>
+</html>
